@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 33, 37, 41;
+  --background-start-rgb: 248, 249, 250;
+  --background-end-rgb: 255, 255, 255;
+  --neutral-light: 233, 236, 239;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-gradient-to-b from-gray-50 to-white text-gray-800;
+    font-family: 'Noto Kufi Arabic', 'IBM Plex Sans Arabic', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Noto Kufi Arabic', sans-serif;
+  }
+
+  p, span, div {
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .fade-in {
+    @apply opacity-0 translate-y-8 transition-all duration-700 ease-in-out;
+  }
+  
+  .fade-in.visible {
+    @apply opacity-100 translate-y-0;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg;
+  }
+  
+  .btn-primary {
+    @apply bg-gray-800 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-gray-700 hover:shadow-md;
+  }
+  
+  .btn-secondary {
+    @apply border-2 border-gray-800 text-gray-800 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-gray-800 hover:text-white;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bg-pattern {
+    background-image: radial-gradient(circle at 25px 25px, rgba(33, 37, 41, 0.05) 2px, rgba(0, 0, 0, 0) 2px);
+    background-size: 50px 50px;
+  }
+}

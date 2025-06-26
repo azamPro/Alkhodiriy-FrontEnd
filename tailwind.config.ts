@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import tailwindcssAnimate from 'tailwindcss-animate';
 
 const config: Config = {
   darkMode: 'class',
@@ -91,10 +92,12 @@ const config: Config = {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in': 'fade-in 0.7s ease-out',
         'slide-up': 'slide-up 0.5s ease-out',
+        'pulse-slow': 'pulse 6s ease-in-out infinite',
+
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [tailwindcssAnimate]
 };
 export default config;
 

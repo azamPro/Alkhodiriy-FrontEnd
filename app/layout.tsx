@@ -2,8 +2,8 @@ import './globals.css';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'عائلة الخضيري',
-  description: 'موقع عائلة الخضيري - تراث وأصالة',
+  title: 'أسرة الخضيري',
+  description: 'موقع أسرة الخضيري',
 };
 
 export default function RootLayout({

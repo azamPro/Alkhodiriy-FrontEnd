@@ -23,7 +23,7 @@ export default function HeroSection() {
       <div className="relative section-container flex items-center justify-center min-h-screen text-center">
         <div className="max-w-4xl">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-6 text-shadow">
-            عائلة الخضيري
+            أسرة الخضيري
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
             تراث عريق وأصالة متجذرة
@@ -37,7 +37,7 @@ export default function HeroSection() {
               onClick={() => scrollToSection('about')}
               className="btn-primary flex items-center justify-center"
             >
-              تعرف على العائلة
+              تعرف على الأسرة
               <ArrowLeft className="w-5 h-5 ml-2" />
             </button>
             <button 

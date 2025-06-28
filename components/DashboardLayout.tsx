@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { 
   Home, 
   Users, 
@@ -19,6 +19,12 @@ import {
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
+}
+
+interface UserData {
+  id: number;
+  name: string;
+  email: string;
 }
 
 const sidebarItems = [
@@ -51,7 +57,50 @@ const sidebarItems = [
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [userData, setUserData] = useState<UserData | null>(null);
   const pathname = usePathname();
+  const router = useRouter();
+
+  useEffect(() => {
+    // Check if user is authenticated
+    const token = localStorage.getItem('authToken');
+    const storedUserData = localStorage.getItem('userData');
+    
+    if (!token || !storedUserData) {
+      // Redirect to login if not authenticated
+      router.push('/auth/login');
+      return;
+    }
+
+    try {
+      const user = JSON.parse(storedUserData);
+      setUserData(user);
+    } catch (error) {
+      console.error('Error parsing user data:', error);
+      router.push('/auth/login');
+    }
+  }, [router]);
+
+  const handleLogout = () => {
+    // Clear authentication data
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('userData');
+    
+    // Redirect to home page
+    router.push('/');
+  };
+
+  // Show loading while checking authentication
+  if (!userData) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-800 mx-auto mb-4"></div>
+          <p className="text-gray-600">جاري التحقق من صحة تسجيل الدخول...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -106,8 +155,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <User className="w-6 h-6 text-gray-600" />
             </div>
             <div>
-              <p className="font-semibold text-gray-800">محمد الخضيري</p>
-              <p className="text-gray-600 text-sm">mohammed@khudairi.com</p>
+              <p className="font-semibold text-gray-800">{userData.name}</p>
+              <p className="text-gray-600 text-sm">{userData.email}</p>
             </div>
           </div>
         </div>
@@ -138,7 +187,10 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
         {/* Logout */}
         <div className="absolute bottom-6 left-6 right-6">
-          <button className="w-full flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-800 rounded-lg transition-colors duration-300">
+          <button 
+            onClick={handleLogout}
+            className="w-full flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-800 rounded-lg transition-colors duration-300"
+          >
             <LogOut className="w-5 h-5" />
             <span className="mr-3">تسجيل الخروج</span>
           </button>

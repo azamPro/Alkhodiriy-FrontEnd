@@ -2,10 +2,12 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Eye, EyeOff, Mail, Lock, ArrowLeft } from 'lucide-react';
 import { loginUser } from '@/lib/auth-api';
 
 export default function LoginPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -41,8 +43,15 @@ export default function LoginPage() {
     try {
       const response = await loginUser(formData);
       console.log('Login successful:', response);
-      // Handle successful login (redirect, store token, etc.)
-      alert('تم تسجيل الدخول بنجاح!');
+      
+      // Store user data and token (in real app, use proper state management)
+      if (response.token) {
+        localStorage.setItem('authToken', response.token);
+        localStorage.setItem('userData', JSON.stringify(response.data.user));
+      }
+      
+      // Redirect to dashboard
+      router.push('/dashboard');
     } catch (error) {
       console.error('Login failed:', error);
       setErrors({ general: 'فشل في تسجيل الدخول. تحقق من البيانات وحاول مرة أخرى.' });
@@ -170,6 +179,15 @@ export default function LoginPage() {
                 إنشاء حساب جديد
               </Link>
             </p>
+          </div>
+        </div>
+
+        {/* Demo Login Info */}
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <h3 className="text-blue-800 font-semibold mb-2 text-right">للتجربة - بيانات دخول تجريبية:</h3>
+          <div className="text-blue-700 text-sm space-y-1 text-right">
+            <p><strong>البريد الإلكتروني:</strong> mohammed@khudairi.com</p>
+            <p><strong>كلمة المرور:</strong> 123456</p>
           </div>
         </div>
       </div>

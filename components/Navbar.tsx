@@ -55,11 +55,15 @@ export default function Navbar() {
                   src="/logo-placeholder.png" 
                   alt="شعار العائلة" 
                   className="w-8 h-8 object-contain"
-                  onError={(e) => {
-                    // Fallback if image doesn't exist
-                    e.currentTarget.style.display = 'none';
-                    e.currentTarget.nextElementSibling!.style.display = 'block';
-                  }}
+                   onError={(e) => {
+                   // hide the broken img
+                   e.currentTarget.style.display = 'none';
+                  // only if the next sibling is an HTMLElement do we set its style
+                  const sib = e.currentTarget.nextElementSibling;
+                   if (sib instanceof HTMLElement) {
+                    sib.style.display = 'block';
+                  }
+                 }}
                 />
                 <span 
                   className="text-gray-600 text-sm font-bold hidden"

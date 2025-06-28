@@ -109,12 +109,18 @@ export default function Navbar() {
 
           {/* Auth Buttons - Left Side */}
           <div className="hidden md:flex items-center space-x-reverse space-x-4">
-            <button className="text-gray-600 hover:text-gray-800 transition-colors duration-300 font-arabic-secondary font-medium px-4 py-2 border border-gray-300 rounded-lg hover:border-gray-400 hover:bg-gray-50">
+            <Link 
+              href="/auth/login"
+              className="text-gray-600 hover:text-gray-800 transition-colors duration-300 font-arabic-secondary font-medium px-4 py-2 border border-gray-300 rounded-lg hover:border-gray-400 hover:bg-gray-50"
+            >
               تسجيل الدخول
-            </button>
-            <button className="bg-gray-800 text-white px-6 py-2 rounded-lg font-arabic-secondary font-medium hover:bg-gray-700 transition-colors duration-300">
+            </Link>
+            <Link 
+              href="/auth/signup"
+              className="bg-gray-800 text-white px-6 py-2 rounded-lg font-arabic-secondary font-medium hover:bg-gray-700 transition-colors duration-300"
+            >
               إنشاء حساب
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -163,12 +169,18 @@ export default function Navbar() {
               
               {/* Mobile Auth Buttons */}
               <div className="border-t border-gray-200 pt-4 mt-4 space-y-2">
-                <button className="block w-full text-right px-4 py-3 text-gray-600 hover:text-gray-800 hover:bg-gray-50 transition-colors duration-300 font-arabic-secondary font-medium border border-gray-300 rounded-lg mx-4 hover:border-gray-400">
+                <Link 
+                  href="/auth/login"
+                  className="block w-full text-right px-4 py-3 text-gray-600 hover:text-gray-800 hover:bg-gray-50 transition-colors duration-300 font-arabic-secondary font-medium border border-gray-300 rounded-lg mx-4 hover:border-gray-400"
+                >
                   تسجيل الدخول
-                </button>
-                <button className="block w-full text-right px-4 py-3 bg-gray-800 text-white rounded-lg font-arabic-secondary font-medium hover:bg-gray-700 transition-colors duration-300 mx-4">
+                </Link>
+                <Link 
+                  href="/auth/signup"
+                  className="block w-full text-right px-4 py-3 bg-gray-800 text-white rounded-lg font-arabic-secondary font-medium hover:bg-gray-700 transition-colors duration-300 mx-4"
+                >
                   إنشاء حساب
-                </button>
+                </Link>
               </div>
             </div>
           </div>

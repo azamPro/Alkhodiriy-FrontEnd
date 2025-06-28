@@ -10,6 +10,10 @@ export default function HeroSection() {
     }
   };
 
+  const navigateToSupport = () => {
+    window.location.href = '/support';
+  };
+
   return (
     <section
       id="hero"
@@ -37,7 +41,7 @@ export default function HeroSection() {
               <ArrowLeft className="w-5 h-5 ml-2" />
             </button>
             <button 
-              onClick={() => scrollToSection('contact')}
+              onClick={navigateToSupport}
               className="btn-secondary"
             >
               تواصل معنا

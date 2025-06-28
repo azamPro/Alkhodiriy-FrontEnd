@@ -9,7 +9,6 @@ import MembersSection from './sections/Members';
 import StructureSection from './sections/Structure';
 import HistorySection from './sections/History';
 import FAQSection from './sections/FAQ';
-import ContactSection from './sections/Contact';
 import Footer from '../components/Footer';
 
 export default function Home() {
@@ -31,7 +30,6 @@ export default function Home() {
         <StructureSection />
         <HistorySection />
         <FAQSection />
-        <ContactSection />
         <Footer />
       </div>
     </main>

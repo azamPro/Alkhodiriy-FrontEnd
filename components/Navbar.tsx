@@ -2,22 +2,28 @@
 
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const navItems = [
     {
       name: 'الرئيسية',
-      href: '#hero'
+      href: '/',
+      isExternal: false
     },
     {
       name: 'الدعم',
-      href: '#contact'
+      href: '/support',
+      isExternal: false
     },
     {
       name: 'إنشاء بطاقة',
-      href: '#create-card'
+      href: '#create-card',
+      isExternal: true
     }
   ];
 
@@ -29,42 +35,67 @@ export default function Navbar() {
     setIsMenuOpen(false);
   };
 
+  const handleNavClick = (item: typeof navItems[0]) => {
+    if (item.isExternal) {
+      scrollToSection(item.href);
+    } else {
+      setIsMenuOpen(false);
+    }
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
       <div className="section-container">
         <div className="flex items-center justify-between h-16">
           {/* Logo - Right Side */}
           <div className="flex items-center">
-            <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
-              <img 
-                src="/logo-placeholder.png" 
-                alt="شعار العائلة" 
-                className="w-8 h-8 object-contain"
-                onError={(e) => {
-                  // Fallback if image doesn't exist
-                  e.currentTarget.style.display = 'none';
-                  e.currentTarget.nextElementSibling!.style.display = 'block';
-                }}
-              />
-              <span 
-                className="text-gray-600 text-sm font-bold hidden"
-                style={{ display: 'none' }}
-              >
-                شعار
-              </span>
-            </div>
+            <Link href="/" className="flex items-center">
+              <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
+                <img 
+                  src="/logo-placeholder.png" 
+                  alt="شعار العائلة" 
+                  className="w-8 h-8 object-contain"
+                  onError={(e) => {
+                    // Fallback if image doesn't exist
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.nextElementSibling!.style.display = 'block';
+                  }}
+                />
+                <span 
+                  className="text-gray-600 text-sm font-bold hidden"
+                  style={{ display: 'none' }}
+                >
+                  شعار
+                </span>
+              </div>
+            </Link>
           </div>
 
           {/* Desktop Navigation - Center */}
           <div className="hidden md:flex items-center space-x-reverse space-x-8">
             {navItems.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => scrollToSection(item.href)}
-                className="text-gray-600 hover:text-gray-800 transition-colors duration-300 font-arabic-secondary font-medium px-4 py-2 rounded-lg hover:bg-gray-50"
-              >
-                {item.name}
-              </button>
+              item.isExternal ? (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.href)}
+                  className={`text-gray-600 hover:text-gray-800 transition-colors duration-300 font-arabic-secondary font-medium px-4 py-2 rounded-lg hover:bg-gray-50 ${
+                    pathname === item.href ? 'text-gray-800 bg-gray-100' : ''
+                  }`}
+                >
+                  {item.name}
+                </button>
+              ) : (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => handleNavClick(item)}
+                  className={`text-gray-600 hover:text-gray-800 transition-colors duration-300 font-arabic-secondary font-medium px-4 py-2 rounded-lg hover:bg-gray-50 ${
+                    pathname === item.href ? 'text-gray-800 bg-gray-100' : ''
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
           </div>
 
@@ -98,13 +129,28 @@ export default function Navbar() {
           <div className="md:hidden border-t border-gray-200 bg-white">
             <div className="py-4 space-y-2">
               {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-right px-4 py-3 text-gray-600 hover:text-gray-800 hover:bg-gray-50 transition-colors duration-300 font-arabic-secondary font-medium"
-                >
-                  {item.name}
-                </button>
+                item.isExternal ? (
+                  <button
+                    key={item.name}
+                    onClick={() => scrollToSection(item.href)}
+                    className={`block w-full text-right px-4 py-3 text-gray-600 hover:text-gray-800 hover:bg-gray-50 transition-colors duration-300 font-arabic-secondary font-medium ${
+                      pathname === item.href ? 'text-gray-800 bg-gray-100' : ''
+                    }`}
+                  >
+                    {item.name}
+                  </button>
+                ) : (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => handleNavClick(item)}
+                    className={`block w-full text-right px-4 py-3 text-gray-600 hover:text-gray-800 hover:bg-gray-50 transition-colors duration-300 font-arabic-secondary font-medium ${
+                      pathname === item.href ? 'text-gray-800 bg-gray-100' : ''
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                )
               ))}
               
               {/* Mobile Auth Buttons */}

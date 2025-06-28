@@ -10,11 +10,8 @@ import HistorySection from './sections/History';
 import FAQSection from './sections/FAQ';
 import ContactSection from './sections/Contact';
 import Footer from '../components/Footer';
-import ComingSoon from './soon/page';
-
 
 export default function Home() {
-
   useEffect(() => {
     const heroElement = document.getElementById('hero');
     if (heroElement) {
@@ -24,9 +21,15 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
-      {/* <ComingSoon /> */}
-      
-      
+      <HeroSection />
+      <AboutSection />
+      <Activities />
+      <MembersSection />
+      <StructureSection />
+      <HistorySection />
+      <FAQSection />
+      <ContactSection />
+      <Footer />
     </main>
   );
 }

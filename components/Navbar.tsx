@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Menu, X, Home, Heart, Plus } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,18 +9,15 @@ export default function Navbar() {
   const navItems = [
     {
       name: 'الرئيسية',
-      href: '#hero',
-      icon: <Home className="w-5 h-5" />
+      href: '#hero'
     },
     {
       name: 'الدعم',
-      href: '#support',
-      icon: <Heart className="w-5 h-5" />
+      href: '#support'
     },
     {
       name: 'إنشاء بطاقة',
-      href: '#create-card',
-      icon: <Plus className="w-5 h-5" />
+      href: '#create-card'
     }
   ];
 
@@ -36,25 +33,49 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
       <div className="section-container">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+          {/* Logo - Right Side */}
           <div className="flex items-center">
-            <h1 className="text-xl font-bold text-gray-800 font-arabic-primary">
-              عائلة الخضيري
-            </h1>
+            <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
+              <img 
+                src="/logo-placeholder.png" 
+                alt="شعار العائلة" 
+                className="w-8 h-8 object-contain"
+                onError={(e) => {
+                  // Fallback if image doesn't exist
+                  e.currentTarget.style.display = 'none';
+                  e.currentTarget.nextElementSibling!.style.display = 'block';
+                }}
+              />
+              <span 
+                className="text-gray-600 text-sm font-bold hidden"
+                style={{ display: 'none' }}
+              >
+                شعار
+              </span>
+            </div>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Center */}
           <div className="hidden md:flex items-center space-x-reverse space-x-8">
             {navItems.map((item) => (
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="flex items-center space-x-reverse space-x-2 text-gray-600 hover:text-gray-800 transition-colors duration-300 font-arabic-secondary"
+                className="text-gray-600 hover:text-gray-800 transition-colors duration-300 font-arabic-secondary font-medium px-4 py-2 rounded-lg hover:bg-gray-50"
               >
-                {item.icon}
-                <span>{item.name}</span>
+                {item.name}
               </button>
             ))}
+          </div>
+
+          {/* Auth Buttons - Left Side */}
+          <div className="hidden md:flex items-center space-x-reverse space-x-4">
+            <button className="text-gray-600 hover:text-gray-800 transition-colors duration-300 font-arabic-secondary font-medium px-4 py-2">
+              تسجيل الدخول
+            </button>
+            <button className="bg-gray-800 text-white px-6 py-2 rounded-lg font-arabic-secondary font-medium hover:bg-gray-700 transition-colors duration-300">
+              إنشاء حساب
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -75,17 +96,26 @@ export default function Navbar() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden border-t border-gray-200 bg-white">
-            <div className="py-4 space-y-4">
+            <div className="py-4 space-y-2">
               {navItems.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="flex items-center space-x-reverse space-x-3 w-full text-right px-4 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-50 transition-colors duration-300 font-arabic-secondary"
+                  className="block w-full text-right px-4 py-3 text-gray-600 hover:text-gray-800 hover:bg-gray-50 transition-colors duration-300 font-arabic-secondary font-medium"
                 >
-                  {item.icon}
-                  <span>{item.name}</span>
+                  {item.name}
                 </button>
               ))}
+              
+              {/* Mobile Auth Buttons */}
+              <div className="border-t border-gray-200 pt-4 mt-4 space-y-2">
+                <button className="block w-full text-right px-4 py-3 text-gray-600 hover:text-gray-800 hover:bg-gray-50 transition-colors duration-300 font-arabic-secondary font-medium">
+                  تسجيل الدخول
+                </button>
+                <button className="block w-full text-right px-4 py-3 bg-gray-800 text-white rounded-lg font-arabic-secondary font-medium hover:bg-gray-700 transition-colors duration-300 mx-4">
+                  إنشاء حساب
+                </button>
+              </div>
             </div>
           </div>
         )}

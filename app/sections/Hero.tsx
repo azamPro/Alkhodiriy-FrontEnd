@@ -3,6 +3,13 @@
 import { ChevronDown, ArrowLeft } from 'lucide-react';
 
 export default function HeroSection() {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section
       id="hero"
@@ -22,17 +29,27 @@ export default function HeroSection() {
             ونقلها للأجيال القادمة بكل فخر واعتزاز
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="btn-primary">
+            <button 
+              onClick={() => scrollToSection('about')}
+              className="btn-primary flex items-center justify-center"
+            >
               تعرف على العائلة
               <ArrowLeft className="w-5 h-5 ml-2" />
             </button>
-            <button className="btn-secondary">تواصل معنا</button>
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className="btn-secondary"
+            >
+              تواصل معنا
+            </button>
           </div>
         </div>
       </div>
 
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <ChevronDown className="w-8 h-8 text-gray-400" />
+        <button onClick={() => scrollToSection('about')}>
+          <ChevronDown className="w-8 h-8 text-gray-400" />
+        </button>
       </div>
     </section>
   );

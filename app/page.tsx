@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import Navbar from '../components/Navbar';
 import HeroSection from './sections/Hero';
 import AboutSection from './sections/About';
 import Activities from './sections/Activities';
@@ -21,15 +22,18 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
-      <HeroSection />
-      <AboutSection />
-      <Activities />
-      <MembersSection />
-      <StructureSection />
-      <HistorySection />
-      <FAQSection />
-      <ContactSection />
-      <Footer />
+      <Navbar />
+      <div className="pt-16">
+        <HeroSection />
+        <AboutSection />
+        <Activities />
+        <MembersSection />
+        <StructureSection />
+        <HistorySection />
+        <FAQSection />
+        <ContactSection />
+        <Footer />
+      </div>
     </main>
   );
 }

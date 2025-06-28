@@ -4,18 +4,7 @@ import { useState } from 'react';
 import DashboardLayout from '@/components/DashboardLayout';
 import Card from '@/components/Card';
 import AnimatedSection from '@/components/AnimatedSection';
-import { 
-  Bell, 
-  Calendar, 
-  Users, 
-  MessageSquare, 
-  Gift,
-  AlertCircle,
-  CheckCircle,
-  Clock,
-  Trash2,
-  MarkAsRead
-} from 'lucide-react';
+import { Bell, Calendar, Users, MessageSquare, Gift, AlertCircle, CheckCircle, Clock, Trash2, BookMarked as MarkAsRead } from 'lucide-react';
 
 // Mock notifications data
 const notificationsData = [

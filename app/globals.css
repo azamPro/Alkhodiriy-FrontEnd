@@ -7,6 +7,61 @@
   --background-start-rgb: 248, 249, 250;
   --background-end-rgb: 255, 255, 255;
   --neutral-light: 233, 236, 239;
+  
+  /* Light theme colors */
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 222.2 47.4% 11.2%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 222.2 84% 4.9%;
+  --radius: 0.5rem;
+  --chart-1: 12 76% 61%;
+  --chart-2: 173 58% 39%;
+  --chart-3: 197 37% 24%;
+  --chart-4: 43 74% 66%;
+  --chart-5: 27 87% 67%;
+}
+
+.dark {
+  /* Dark theme colors */
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 212.7 26.8% 83.9%;
+  --chart-1: 220 70% 50%;
+  --chart-2: 160 60% 45%;
+  --chart-3: 30 80% 55%;
+  --chart-4: 280 65% 60%;
+  --chart-5: 340 75% 55%;
 }
 
 @layer base {
@@ -19,7 +74,7 @@
   }
   
   body {
-    @apply bg-gradient-to-b from-gray-50 to-white text-gray-800;
+    @apply bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-200;
     font-family: 'Noto Kufi Arabic', 'IBM Plex Sans Arabic', sans-serif;
   }
 
@@ -50,11 +105,11 @@
   }
   
   .btn-primary {
-    @apply bg-gray-800 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-gray-700 hover:shadow-md;
+    @apply bg-gray-800 dark:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-gray-700 dark:hover:bg-gray-600 hover:shadow-md;
   }
   
   .btn-secondary {
-    @apply border-2 border-gray-800 text-gray-800 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-gray-800 hover:text-white;
+    @apply border-2 border-gray-800 dark:border-gray-600 text-gray-800 dark:text-gray-200 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-gray-800 dark:hover:bg-gray-600 hover:text-white;
   }
 }
 
@@ -66,5 +121,9 @@
   .bg-pattern {
     background-image: radial-gradient(circle at 25px 25px, rgba(33, 37, 41, 0.05) 2px, rgba(0, 0, 0, 0) 2px);
     background-size: 50px 50px;
+  }
+  
+  .dark .bg-pattern {
+    background-image: radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.05) 2px, rgba(0, 0, 0, 0) 2px);
   }
 }

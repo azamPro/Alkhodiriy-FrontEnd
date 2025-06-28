@@ -10,6 +10,7 @@ import StructureSection from './sections/Structure';
 import HistorySection from './sections/History';
 import FAQSection from './sections/FAQ';
 import Footer from '../components/Footer';
+import ComingSoon from './soon/page';
 
 export default function Home() {
   useEffect(() => {
@@ -21,7 +22,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
-      <Navbar />
+      {/* <Navbar />
       <div className="pt-16">
         <HeroSection />
         <AboutSection />
@@ -31,7 +32,10 @@ export default function Home() {
         <HistorySection />
         <FAQSection />
         <Footer />
-      </div>
+      </div> */}
+      <main className="min-h-screen">
+      <ComingSoon />
+    </main>
     </main>
   );
 }

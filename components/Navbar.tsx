@@ -52,7 +52,7 @@ export default function Navbar() {
             <Link href="/" className="flex items-center">
               <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
                 <img 
-                  src="/images/family-logo.png" 
+                  src="/images/family logo.png" 
                   alt="شعار العائلة" 
                   className="w-8 h-8 object-contain"
                    onError={(e) => {

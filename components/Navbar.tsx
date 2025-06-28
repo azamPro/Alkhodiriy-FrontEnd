@@ -50,28 +50,31 @@ export default function Navbar() {
           {/* Logo - Right Side */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden">
                 <img 
-                  src="/images/family logo.png" 
-                  alt="شعار العائلة" 
+                  src="/images/family logo.webp" 
+                  alt="شعار عائلة الخضيري" 
                   className="w-8 h-8 object-contain"
-                   onError={(e) => {
-                   // hide the broken img
-                   e.currentTarget.style.display = 'none';
-                  // only if the next sibling is an HTMLElement do we set its style
-                  const sib = e.currentTarget.nextElementSibling;
-                   if (sib instanceof HTMLElement) {
-                    sib.style.display = 'block';
-                  }
-                 }}
+                  onError={(e) => {
+                    // Hide the broken img
+                    e.currentTarget.style.display = 'none';
+                    // Show fallback text
+                    const sib = e.currentTarget.nextElementSibling;
+                    if (sib instanceof HTMLElement) {
+                      sib.style.display = 'block';
+                    }
+                  }}
                 />
                 <span 
                   className="text-gray-600 text-sm font-bold hidden"
                   style={{ display: 'none' }}
                 >
-                  شعار
+                  الخضيري
                 </span>
               </div>
+              <span className="mr-3 text-lg font-bold text-gray-800 font-arabic-primary">
+                عائلة الخضيري
+              </span>
             </Link>
           </div>
 

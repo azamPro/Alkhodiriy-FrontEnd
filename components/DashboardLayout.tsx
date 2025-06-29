@@ -119,7 +119,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
       {/* Mobile Sidebar Overlay */}
       {isSidebarOpen && (
         <div 
@@ -214,9 +214,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       </div>
 
       {/* Main Content */}
-      <div className="lg:mr-64">
+      <div className="flex-1 flex flex-col min-h-screen lg:mr-0">
         {/* Top Header */}
-        <header className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 px-6 py-4">
+        <header className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 px-6 py-4 flex-shrink-0">
           <div className="flex items-center justify-between">
             <button
               onClick={() => setIsSidebarOpen(true)}
@@ -302,10 +302,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         </header>
 
         {/* Page Content */}
-        <main className="p-6">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-            {children}
-          </div>
+        <main className="flex-1 p-6">
+          {children}
         </main>
       </div>
 

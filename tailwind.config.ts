@@ -93,11 +93,9 @@ const config: Config = {
         'fade-in': 'fade-in 0.7s ease-out',
         'slide-up': 'slide-up 0.5s ease-out',
         'pulse-slow': 'pulse 6s ease-in-out infinite',
-
       },
     },
   },
   plugins: [tailwindcssAnimate]
 };
 export default config;
-

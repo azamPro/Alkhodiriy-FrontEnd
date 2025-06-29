@@ -9,6 +9,11 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  // Don't show navbar on dashboard pages
+  if (pathname?.startsWith('/dashboard')) {
+    return null;
+  }
+
   const navItems = [
     {
       name: 'الرئيسية',
@@ -50,26 +55,26 @@ export default function Navbar() {
           {/* Logo - Right Side */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
+              <div className="w-12 h-12 flex items-center justify-center">
                 <img 
-                  src="/logo-placeholder.png" 
-                  alt="شعار العائلة" 
-                  className="w-8 h-8 object-contain"
-                   onError={(e) => {
-                   // hide the broken img
-                   e.currentTarget.style.display = 'none';
-                  // only if the next sibling is an HTMLElement do we set its style
-                  const sib = e.currentTarget.nextElementSibling;
-                   if (sib instanceof HTMLElement) {
-                    sib.style.display = 'block';
-                  }
-                 }}
+                  src="/images/family logo.webp" 
+                  alt="شعار عائلة الخضيري" 
+                  className="w-10 h-10 object-contain"
+                  onError={(e) => {
+                    // Hide the broken img
+                    e.currentTarget.style.display = 'none';
+                    // Show fallback text
+                    const sib = e.currentTarget.nextElementSibling;
+                    if (sib instanceof HTMLElement) {
+                      sib.style.display = 'block';
+                    }
+                  }}
                 />
                 <span 
                   className="text-gray-600 text-sm font-bold hidden"
                   style={{ display: 'none' }}
                 >
-                  شعار
+                  الخضيري
                 </span>
               </div>
             </Link>
@@ -82,8 +87,10 @@ export default function Navbar() {
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className={`text-gray-600 hover:text-gray-800 transition-colors duration-300 font-arabic-secondary font-medium px-4 py-2 rounded-lg hover:bg-gray-50 ${
-                    pathname === item.href ? 'text-gray-800 bg-gray-100' : ''
+                  className={`relative text-gray-600 hover:text-gray-900 transition-all duration-300 font-arabic-secondary font-medium px-2 py-2 text-lg ${
+                    pathname === item.href 
+                      ? 'text-gray-900 font-semibold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-gray-800 after:rounded-full' 
+                      : 'hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:right-0 hover:after:h-0.5 hover:after:bg-gray-400 hover:after:rounded-full hover:after:scale-x-0 hover:after:animate-pulse'
                   }`}
                 >
                   {item.name}
@@ -93,8 +100,10 @@ export default function Navbar() {
                   key={item.name}
                   href={item.href}
                   onClick={() => handleNavClick(item)}
-                  className={`text-gray-600 hover:text-gray-800 transition-colors duration-300 font-arabic-secondary font-medium px-4 py-2 rounded-lg hover:bg-gray-50 ${
-                    pathname === item.href ? 'text-gray-800 bg-gray-100' : ''
+                  className={`relative text-gray-600 hover:text-gray-900 transition-all duration-300 font-arabic-secondary font-medium px-2 py-2 text-lg ${
+                    pathname === item.href 
+                      ? 'text-gray-900 font-semibold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-gray-800 after:rounded-full' 
+                      : 'hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:right-0 hover:after:h-0.5 hover:after:bg-gray-400 hover:after:rounded-full hover:after:scale-x-0 hover:after:animate-pulse'
                   }`}
                 >
                   {item.name}
@@ -105,12 +114,18 @@ export default function Navbar() {
 
           {/* Auth Buttons - Left Side */}
           <div className="hidden md:flex items-center space-x-reverse space-x-4">
-            <button className="text-gray-600 hover:text-gray-800 transition-colors duration-300 font-arabic-secondary font-medium px-4 py-2 border border-gray-300 rounded-lg hover:border-gray-400 hover:bg-gray-50">
+            <Link 
+              href="/auth/login"
+              className="text-gray-600 hover:text-gray-800 transition-colors duration-300 font-arabic-secondary font-medium px-4 py-2 border border-gray-300 rounded-lg hover:border-gray-400 hover:bg-gray-50"
+            >
               تسجيل الدخول
-            </button>
-            <button className="bg-gray-800 text-white px-6 py-2 rounded-lg font-arabic-secondary font-medium hover:bg-gray-700 transition-colors duration-300">
+            </Link>
+            <Link 
+              href="/auth/signup"
+              className="bg-gray-800 text-white px-6 py-2 rounded-lg font-arabic-secondary font-medium hover:bg-gray-700 transition-colors duration-300"
+            >
               إنشاء حساب
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -137,8 +152,8 @@ export default function Navbar() {
                   <button
                     key={item.name}
                     onClick={() => scrollToSection(item.href)}
-                    className={`block w-full text-right px-4 py-3 text-gray-600 hover:text-gray-800 hover:bg-gray-50 transition-colors duration-300 font-arabic-secondary font-medium ${
-                      pathname === item.href ? 'text-gray-800 bg-gray-100' : ''
+                    className={`block w-full text-right px-4 py-3 text-gray-600 hover:text-gray-800 hover:bg-gray-50 transition-colors duration-300 font-arabic-secondary font-medium text-lg ${
+                      pathname === item.href ? 'text-gray-900 font-semibold bg-gray-50' : ''
                     }`}
                   >
                     {item.name}
@@ -148,8 +163,8 @@ export default function Navbar() {
                     key={item.name}
                     href={item.href}
                     onClick={() => handleNavClick(item)}
-                    className={`block w-full text-right px-4 py-3 text-gray-600 hover:text-gray-800 hover:bg-gray-50 transition-colors duration-300 font-arabic-secondary font-medium ${
-                      pathname === item.href ? 'text-gray-800 bg-gray-100' : ''
+                    className={`block w-full text-right px-4 py-3 text-gray-600 hover:text-gray-800 hover:bg-gray-50 transition-colors duration-300 font-arabic-secondary font-medium text-lg ${
+                      pathname === item.href ? 'text-gray-900 font-semibold bg-gray-50' : ''
                     }`}
                   >
                     {item.name}
@@ -159,12 +174,18 @@ export default function Navbar() {
               
               {/* Mobile Auth Buttons */}
               <div className="border-t border-gray-200 pt-4 mt-4 space-y-2">
-                <button className="block w-full text-right px-4 py-3 text-gray-600 hover:text-gray-800 hover:bg-gray-50 transition-colors duration-300 font-arabic-secondary font-medium border border-gray-300 rounded-lg mx-4 hover:border-gray-400">
+                <Link 
+                  href="/auth/login"
+                  className="block w-full text-right px-4 py-3 text-gray-600 hover:text-gray-800 hover:bg-gray-50 transition-colors duration-300 font-arabic-secondary font-medium border border-gray-300 rounded-lg mx-4 hover:border-gray-400"
+                >
                   تسجيل الدخول
-                </button>
-                <button className="block w-full text-right px-4 py-3 bg-gray-800 text-white rounded-lg font-arabic-secondary font-medium hover:bg-gray-700 transition-colors duration-300 mx-4">
+                </Link>
+                <Link 
+                  href="/auth/signup"
+                  className="block w-full text-right px-4 py-3 bg-gray-800 text-white rounded-lg font-arabic-secondary font-medium hover:bg-gray-700 transition-colors duration-300 mx-4"
+                >
                   إنشاء حساب
-                </button>
+                </Link>
               </div>
             </div>
           </div>

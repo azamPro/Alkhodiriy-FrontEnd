@@ -25,13 +25,11 @@ export default function HeroSection() {
           <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-6 text-shadow">
             أسرة الخضيري
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
+          {/* <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
             تراث عريق وأصالة متجذرة
-          </p>
+          </p> */}
           <p className="text-lg text-gray-500 mb-12 max-w-2xl mx-auto leading-relaxed">
-            نحن نفتخر بتراثنا العائلي العريق ونسعى للحفاظ على قيمنا وتقاليدنا 
-            ونقلها للأجيال القادمة بكل فخر واعتزاز
-          </p>
+يرجع نسب الأسرة في سدير والقصيم من آل (بو حسين) إلى العنبر بن عمرو بن تميم          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
               onClick={() => scrollToSection('about')}

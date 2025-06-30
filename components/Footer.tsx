@@ -1,6 +1,7 @@
 'use client';
 
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { FaSnapchatGhost, FaTiktok, FaInstagram } from 'react-icons/fa';
 
 export default function Footer() {
   return (
@@ -12,12 +13,37 @@ export default function Footer() {
             <p className="text-gray-300 leading-relaxed mb-6">
               تراث عريق وأصالة متجذرة نفتخر بها ونحافظ عليها
             </p>
-            <div className="flex space-x-reverse space-x-4">
+            {/* <div className="flex space-x-reverse space-x-4">
               <Facebook className="w-6 h-6 text-gray-300 hover:text-white cursor-pointer transition-colors duration-300" />
               <Twitter className="w-6 h-6 text-gray-300 hover:text-white cursor-pointer transition-colors duration-300" />
               <Linkedin className="w-6 h-6 text-gray-300 hover:text-white cursor-pointer transition-colors duration-300" />
               <Instagram className="w-6 h-6 text-gray-300 hover:text-white cursor-pointer transition-colors duration-300" />
-            </div>
+            </div> */}
+                 <div className="flex space-x-reverse space-x-4">
+          <a
+            href="https://www.snapchat.com/add/initalkhudhiry"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaSnapchatGhost className="w-6 h-6 text-gray-300 hover:text-white cursor-pointer transition-colors duration-300" />
+          </a>
+          <a
+            href="https://www.instagram.com/initalkhudhiry"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaInstagram className="w-6 h-6 text-gray-300 hover:text-white cursor-pointer transition-colors duration-300" />
+          </a>
+          <a
+            href="https://www.tiktok.com/@initalkhudhiry"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaTiktok className="w-6 h-6 text-gray-300 hover:text-white cursor-pointer transition-colors duration-300" />
+          </a>
+        </div>
+
+
           </div>
 
           <div>

@@ -7,7 +7,8 @@ import AboutSection from './sections/About';
 import Activities from './sections/Activities';
 import MembersSection from './sections/Members';
 import StructureSection from './sections/Structure';
-import HistorySection from './sections/History';
+// import HistorySection from './sections/History';
+import FundActivitiesSection from './sections/FundActivitiesSection';
 import FAQSection from './sections/FAQ';
 import Footer from '../components/Footer';
 // import ComingSoon from './soon/page';
@@ -29,7 +30,8 @@ export default function Home() {
         <Activities />
         <MembersSection />
         <StructureSection />
-        <HistorySection />
+        {/* <HistorySection /> */}
+        <FundActivitiesSection />
         <FAQSection />
         <Footer />
       </div>

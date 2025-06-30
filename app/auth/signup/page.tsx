@@ -2,10 +2,12 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Eye, EyeOff, Mail, Lock, User, ArrowLeft } from 'lucide-react';
 import { signupUser } from '@/lib/auth-api';
 
 export default function SignupPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -56,8 +58,10 @@ export default function SignupPage() {
     try {
       const response = await signupUser(formData);
       console.log('Signup successful:', response);
-      alert('تم إنشاء الحساب بنجاح! يرجى تسجيل الدخول.');
-      // Redirect to login page or handle success
+      
+      // Show success message and redirect to login
+      alert('تم إنشاء الحساب بنجاح! سيتم توجيهك لتسجيل الدخول.');
+      router.push('/auth/login');
     } catch (error) {
       console.error('Signup failed:', error);
       setErrors({ general: 'فشل في إنشاء الحساب. حاول مرة أخرى.' });

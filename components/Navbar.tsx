@@ -9,6 +9,11 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  // Don't show navbar on dashboard pages
+  if (pathname?.startsWith('/dashboard')) {
+    return null;
+  }
+
   const navItems = [
     {
       name: 'الرئيسية',
